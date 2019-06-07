@@ -57,9 +57,15 @@ h2("Testing EAM hessian")
 at = bulk(:Fe, cubic=true) * 2
 set_pbc!(at, false)
 set_constraint!(at, FixedCell(at))
-dir = joinpath(dirname(@__FILE__), "..", "data") * "/"
 eam = eam_Fe
 set_calculator!(at, eam)
+
+h2("Testing Another EAM hessian")
+# setup a geometry
+at = bulk(:W, cubic=true) * 2
+set_pbc!(at, false)
+set_constraint!(at, FixedCell(at))
+set_calculator!(at, eam_W4)
 
 println("test a single stencil")
 r = []
